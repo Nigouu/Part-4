@@ -57,18 +57,18 @@ const mostLikes = (blogs) => {
     author:'',
     likes:0
   }
-  console.log(obj);
+  // console.log(obj);
   for (var i = 0; i < blogs.length; i++){
       var addition = blogs[i].likes
-      console.log('summan av nuvarande', addition);
+      // console.log('summan av nuvarande', addition);
       if (addition > sum) {
         sum = addition
         obj.author = blogs[i].author
         obj.likes = blogs[i].likes
-        console.log('nuvarande objektet', obj);
+        // console.log('nuvarande objektet', obj);
       }
   }
-  console.log('slutliga', obj);
+  // console.log('slutliga', obj);
   return obj
 }
 
