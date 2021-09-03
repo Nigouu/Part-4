@@ -33,33 +33,16 @@ blogsRouter.delete('/:id', async (request, response, next) => {
   response.status(204).end()
 })
 
-// blogsRouter.post('/', (request, response, next) => {
-//   const body = request.body
-//   const blog = new Blog({
-//     title: body.title,
-//     author: body.author,
-//     url: body.url,
-//     likes: body.likes
-//   })
-//   blog.save()
-//     .then(savedBlog => {
-//       response.json(savedBlog)
-//     })
-//     .catch(error => next(error))
-// })
-
-
-// blogsRouter.put('/:id', (request, response, next) => {
-//   const body = request.body
-//   const note = {
-//     content: body.content,
-//     important: body.important,
-//   }
-//   Note.findByIdAndUpdate(request.params.id, note, { new: true })
-//     .then(updatedNote => {
-//       response.json(updatedNote)
-//     })
-//     .catch(error => next(error))
-// })
+blogsRouter.put('/:id', async (request, response, next) => {
+  const body = request.body
+  const blog = {
+    title: body.title,
+    author: body.author,
+    url: body.url,
+    likes: body.likes
+  }
+  await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
+  response.status(200).end()
+})
 
 module.exports = blogsRouter
