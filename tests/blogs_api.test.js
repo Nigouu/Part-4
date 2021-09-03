@@ -83,50 +83,45 @@ test('4.10 a blog can be added', async () => {
 // })
 
 
-// test('4.12 blog without content is not added', async () => {
-//   const newBlog = {
-//     author:"Snoggeliboi",
-//     likes: 5
-//   }
-//   await api
-//     .post('/api/blogs')
-//     .send(newBlog)
-//     .expect(400)
-//     const blogsAtEnd = await helper.blogsInDb()
-//     expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
-// })
+test('4.12 blog without content is not added', async () => {
+  const newBlog = {
+    author:"Snoggeliboi",
+    likes: 5
+  }
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400)
+    const blogsAtEnd = await helper.blogsInDb()
+    expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
+})
 
-// test('a specific blog can be viewed', async () => {
-//   const notesAtStart = await helper.blogsInDb()
+test('a specific blog can be viewed', async () => {
+  const notesAtStart = await helper.blogsInDb()
 
-//   const noteToView = notesAtStart[0]
+  const noteToView = notesAtStart[0]
 
-//   const resultNote = await api
-//     .get(`/api/blogs/${noteToView.id}`)
-//     .expect(200)
-//     .expect('Content-Type', /application\/json/)
+  const resultNote = await api
+    .get(`/api/blogs/${noteToView.id}`)
+    .expect(200)
+    .expect('Content-Type', /application\/json/)
 
-//   const processedNoteToView = JSON.parse(JSON.stringify(noteToView))
+  const processedNoteToView = JSON.parse(JSON.stringify(noteToView))
 
-//   expect(resultNote.body).toEqual(processedNoteToView)
-// })
+  expect(resultNote.body).toEqual(processedNoteToView)
+})
 
 // test('a blog can be deleted', async () => {
 //   const notesAtStart = await helper.blogsInDb()
 //   const noteToDelete = notesAtStart[0]
-
 //   await api
 //     .delete(`/api/notes/${noteToDelete.id}`)
 //     .expect(204)
-
 //   const notesAtEnd = await helper.blogsInDb()
-
 //   expect(notesAtEnd).toHaveLength(
 //     helper.initialBlogs.length - 1
 //   )
-
 //   const contents = notesAtEnd.map(r => r.title)
-
 //   expect(contents).not.toContain(noteToDelete.title)
 // })
 
